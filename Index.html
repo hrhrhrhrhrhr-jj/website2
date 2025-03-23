@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executor Key System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .page-container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            gap: 30px;
+        }
+
+        .ads-container {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ad-box {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px solid #333;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .ad-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .ad-box h3 {
+            color: #00a2ff;
+            margin-bottom: 10px;
+        }
+
+        .ad-box p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .ad-box a {
+            background-color: #00a2ff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .ad-box a:hover {
+            background-color: #0088d1;
+        }
+
+        .ad-premium {
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+            border: 1px solid #444;
+        }
+
+        .ad-premium h3 {
+            color: #FFD700;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .key-system {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00a2ff;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: #00a2ff;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0088d1;
+        }
+
+        #status-message {
+            text-align: center;
+            height: 20px;
+        }
+
+        .loader {
+            border: 4px solid #2d2d2d;
+            border-top: 4px solid #00a2ff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .main-content {
+            margin-top: 20px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #00a2ff;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        #executeScript {
+            background-color: #00c853;
+        }
+
+        #executeScript:hover {
+            background-color: #00a844;
+        }
+
+        .key-status {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .permanent-key {
+            color: #FFD700; /* Gold color for permanent keys */
+        }
+
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .page-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ads-container {
+                width: 100%;
+                max-width: 500px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .ad-box {
+                width: calc(33.33% - 15px);
+                min-width: 150px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ads-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ad-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="ads-container">
+            <div class="ad-box">
+                <h3>Premium Scripts</h3>
+                <p>Get access to our exclusive collection of high-quality scripts!</p>
+                <a href="#" onclick="alert('Premium scripts section coming soon!'); return false;">Learn More</a>
+            </div>
+            
+            <div class="ad-box ad-premium">
+                <h3>Lifetime Key</h3>
+                <p>Upgrade to a lifetime key and never worry about expiration again!</p>
+                <a href="#" onclick="alert('Lifetime key purchase coming soon!'); return false;">Upgrade Now</a>
+            </div>
+            
+            <div class="ad-box">
+                <h3>Join Discord</h3>
+                <p>Join our community for free keys, updates, and support!</p>
+                <a href="#" onclick="URL.open('Http//discord.gg/jv2RQ3T6zv'); return false;">Join Now</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="key-system">
+                <h1>Executor Key System</h1>
+                <div class="login-form">
+                    <input type="text" id="keyInput" placeholder="Enter your key...">
+                    <button id="submitKey">Submit Key</button>
+                    <p id="status-message"></p>
+                    <div class="loader" id="loader"></div>
+                </div>
+                <div class="main-content" id="main-content" style="display: none;">
+                    <h2>Welcome to the Executor</h2>
+                    <p class="key-status" id="key-status"></p>
+                    <textarea id="scriptArea" placeholder="Enter your script here..."></textarea>
+                    <button id="executeScript">Execute</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const keyInput = document.getElementById('keyInput');
+            const submitButton = document.getElementById('submitKey');
+            const statusMessage = document.getElementById('status-message');
+            const loader = document.getElementById('loader');
+            const mainContent = document.getElementById('main-content');
+            const keyStatus = document.getElementById('key-status');
+            const executeButton = document.getElementById('executeScript');
+            const scriptArea = document.getElementById('scriptArea');
+            
+            // Sample valid keys (in a real system, these would be stored securely on a server)
+            const validKeys = [
+                { key: 'KeyBot-1234-ABCD-5678', expiration: 24, isPermanent: false },
+                { key: 'KeyBot-5678-EFGH-9012', expiration: 1, isPermanent: false },
+                { key: 'KeyBot-9012-IJKL-3456', expiration: 72, isPermanent: false },
+                { key: 'PERM-AAAA-BBBB-CCCC', isPermanent: true },
+                { key: 'LIFETIME-1111-2222', isPermanent: true }
+            ];
+            
+            // Check if user already has a valid key in localStorage
+            const savedKey = localStorage.getItem('executorKey');
+            const keyExpiration = localStorage.getItem('keyExpiration');
+            const isPermanent = localStorage.getItem('isPermanentKey') === 'true';
+            
+            if (savedKey) {
+                if (isPermanent) {
+                    // Permanent key never expires
+                    showMainContent(true);
+                } else if (keyExpiration && new Date() < new Date(keyExpiration)) {
+                    // Temporary key still valid
+                    const remainingHours = Math.ceil((new Date(keyExpiration) - new Date()) / (1000 * 60 * 60));
+                    showMainContent(false, remainingHours);
+                }
+            }
+            
+            function showMainContent(isPermanent, hours = 0) {
+                mainContent.style.display = 'block';
+                
+                if (isPermanent) {
+                    keyStatus.innerHTML = '<span class="permanent-key">PERMANENT KEY</span> - Never expires';
+                    keyStatus.classList.add('permanent-key');
+                } else {
+                    keyStatus.innerHTML = `Your key is valid for <span>${hours}</span> hours`;
+                    keyStatus.classList.remove('permanent-key');
+                }
+                
+                statusMessage.textContent = 'Key validated successfully!';
+                statusMessage.style.color = '#00c853';
+            }
+            
+            submitButton.addEventListener('click', function() {
+                const key = keyInput.value.trim();
+                
+                if (!key) {
+                    statusMessage.textContent = 'Please enter a key';
+                    statusMessage.style.color = '#ff3d00';
+                    return;
+                }
+                
+                // Show loader and simulate server validation
+                statusMessage.textContent = '';
+                loader.style.display = 'block';
+                
+                setTimeout(() => {
+                    const validKeyObj = validKeys.find(k => k.key === key);
+                    
+                    if (validKeyObj) {
+                        // Save key to localStorage
+                        localStorage.setItem('executorKey', key);
+                        localStorage.setItem('isPermanentKey', validKeyObj.isPermanent);
+                        
+                        if (validKeyObj.isPermanent) {
+                            // Permanent key
+                            showMainContent(true);
+                        } else {
+                            // Temporary key with expiration
+                            const expirationDate = new Date();
+                            expirationDate.setHours(expirationDate.getHours() + validKeyObj.expiration);
+                            localStorage.setItem('keyExpiration', expirationDate.toString());
+                            showMainContent(false, validKeyObj.expiration);
+                        }
+                    } else {
+                        statusMessage.textContent = 'Invalid key. Please try again.';
+                        statusMessage.style.color = '#ff3d00';
+                    }
+                    
+                    loader.style.display = 'none';
+                }, 1500); // Simulate server delay
+            });
+            
+            executeButton.addEventListener('click', function() {
+                const script = scriptArea.value.trim();
+                
+                if (!script) {
+                    alert('Please enter a script to execute');
+                    return;
+                }
+                
+                // In a real executor, this would send the script to be executed
+                alert('Script execution requested! In a real executor, your script would run now.');
+                
+                // For demo purposes only - log the script to console
+                console.log('Script to execute:', script);
+            });
+        });
+    </script>
+</body>
+</html>
